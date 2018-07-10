@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    models:
+      group: グループ  #g
+      member: メンバー  #g
+      user: ユーザー  #g
+
+    attributes:
+      group:
+        image: 画像  #g
+        introduce: 紹介する  #g
+        members: メンバー  #g
+        name: 名  #g
+        users: ユーザー  #g
+
+      member:
+        group: :activerecord.models.group  #g
+        name: 名  #g
+        user: :activerecord.models.user  #g
+
+      user:
+        current_sign_in_at: 現在のログイン  #g
+        current_sign_in_ip: 現在の郵便番号  #g
+        email: Eメール  #g
+        encrypted_password: 暗号化されたパスワード  #g
+        group: グループ  #g
+        last_sign_in_at: 最後にログインする  #g
+        last_sign_in_ip: ipの最後のサイン  #g
+        member: メンバー  #g
+        name: 名  #g
+        remember_created_at: 作成時の覚え書き  #g
+        reset_password_sent_at: 送信パスワードのリセット  #g
+        reset_password_token: パスワードトークンをリセットする  #g

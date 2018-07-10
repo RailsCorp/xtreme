@@ -6,5 +6,5 @@ class User < ApplicationRecord
   has_many :member, dependent: :destroy
   has_many :group, through: :groups
 
-  validates :name, presense: :true
+  validates :name, presence: true
 end
