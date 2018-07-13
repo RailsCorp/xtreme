@@ -6,11 +6,11 @@ Rails.application.routes.draw do
     resources :members
   end
 
-  name_space :api do
+  namespace :api do
     resources :users do
       resources :groups do
-        resources :comments, only [:create]
-        resources :memos, only [:create]
+        resources :comments, only: [:create]
+        resources :memos, only: [:create]
       end
     end
   end
