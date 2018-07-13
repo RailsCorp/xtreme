@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :task
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users
+  resources :task
+  resources :users do
+    resources :groups
+    resources :members
+  end
+  # mount API::Root => '/api'
 end
