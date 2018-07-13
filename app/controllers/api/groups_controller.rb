@@ -1,6 +1,6 @@
 module Api
   class GroupsController < ApplicationController
-    before_action :set_group, only: [:update, :destroy]
+    before_action :set_group, only: %i[update , destroy]
     def create
       @group = Group.new(group_params)
       if @group.save

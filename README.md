@@ -30,7 +30,13 @@ https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
 注意) 最新版はver5.2だけど、ver5.2は、まだrails使えないのでver5.1をインストール
 
 2. VirtualBox内にcentOSインストール
-ターミナルで、`vagrant box add centos/7`を打つ。
+ターミナルで、
+
+``
+vagrant box add centos/7
+``
+
+を打つ。
 途中で、選択が来るから`Virtualbox`を選択。`Successfuly`みたいなのが出たら、OK
 
 3. `mkdir vagrant`でvagrantディレクトリを作成。
@@ -58,21 +64,43 @@ https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
    確認として`git --version`を実行！　もし入らなかったら、ググって解決してください！
 
 10. rbenvの導入
-  `git clone git://github.com/sstephenson/rbenv.git ~/.rbenv`
-  `echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile`
-  `echo 'eval "$(rbenv init -)"' >> ~/.bash_profile`
+
+  ``
+  git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
+  ``
+
+  ``
+  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+  ``
+  ``
+  echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+  ``
+
   を順に実行。
-  `rbenv --version`で入っているかを確認。
+  ``
+  rbenv --version
+  ``
+
+  で入っているかを確認。
 
 11. ruby-buildの導入
-  `git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build`
+
+  ``
+  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+  ``
 
 12. rubyの導入
-  `sudo yum -y install openssl-devel gcc readline-devel libffi-devel mysql-devel gcc-c++`を実行。
+
+  ``
+  sudo yum -y install openssl-devel gcc readline-devel libffi-devel mysql-devel gcc-c++
+  ``
+
+  を実行。
 
   `rbenv install 2.5.0`を実行し、`rbenv global 2.5.0`でglobalに設定。`ruby -v`でver2.5.0が入っているかを確認。
 
 13. railsの導入
+
   ``
   gem install multi_json -v '1.10.1'
   ``
@@ -80,6 +108,7 @@ https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
   ``
   rbenv exec gem install bundler
   ``
+
   ``
   rbenv rehash
   ``
