@@ -13,6 +13,7 @@ ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux]
 * Configuration
 
 * Database creation
+MySQL -> config/environment/development.log (位置を見直す)
 
 * Database initialization
 
@@ -72,10 +73,20 @@ https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
   `rbenv install 2.5.0`を実行し、`rbenv global 2.5.0`でglobalに設定。`ruby -v`でver2.5.0が入っているかを確認。
 
 13. railsの導入
-  `gem install multi_json -v '1.10.1'`
-  `rbenv exec gem install bundler`
-  `rbenv rehash`
-  `gem install rails`
+  ``
+  gem install multi_json -v '1.10.1'
+  ``
+
+  ``
+  rbenv exec gem install bundler
+  ``
+  ``
+  rbenv rehash
+  ``
+
+  ``
+  gem install rails
+  ``
   終了。
 
   あとは、`git config`コマンドで、usernameとuser.emailを登録してくれれば、使えるようになるはず。
