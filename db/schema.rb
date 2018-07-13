@@ -16,6 +16,9 @@ ActiveRecord::Schema.define(version: 20180612065259) do
     t.text "task", null: false
     t.text "image"
     t.datetime "deadline"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
