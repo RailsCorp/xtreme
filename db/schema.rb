@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180714164736) do
+ActiveRecord::Schema.define(version: 20180714175258) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "text", null: false
@@ -20,6 +20,44 @@ ActiveRecord::Schema.define(version: 20180714164736) do
     t.bigint "task_id", null: false
     t.index ["task_id"], name: "index_comments_on_task_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "coporation_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "group_id", null: false
+    t.bigint "coporation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coporation_id"], name: "index_coporation_groups_on_coporation_id"
+    t.index ["group_id"], name: "index_coporation_groups_on_group_id"
+  end
+
+  create_table "coporation_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "task_id", null: false
+    t.bigint "coporation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coporation_id"], name: "index_coporation_tasks_on_coporation_id"
+    t.index ["task_id"], name: "index_coporation_tasks_on_task_id"
+  end
+
+  create_table "coporation_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id", null: false
+    t.bigint "coporation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coporation_id"], name: "index_coporation_users_on_coporation_id"
+    t.index ["user_id"], name: "index_coporation_users_on_user_id"
+  end
+
+  create_table "coporations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.text "image"
+    t.text "introduce"
+    t.string "owner", null: false
+    t.text "address", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "established", null: false
   end
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -85,6 +123,12 @@ ActiveRecord::Schema.define(version: 20180714164736) do
 
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
+  add_foreign_key "coporation_groups", "coporations"
+  add_foreign_key "coporation_groups", "groups"
+  add_foreign_key "coporation_tasks", "coporations"
+  add_foreign_key "coporation_tasks", "tasks"
+  add_foreign_key "coporation_users", "coporations"
+  add_foreign_key "coporation_users", "users"
   add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
   add_foreign_key "memos", "tasks"
