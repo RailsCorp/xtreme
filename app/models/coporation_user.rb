@@ -1,0 +1,2 @@
+class CoporationUser < ApplicationRecord
+end
