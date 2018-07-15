@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   get 'coporations/show'
 
   devise_for :users
-  resources :tasks
+  get 'home/index' => 'home#index'
   resources :users do
     resources :groups, only: %i[:index]
     resources :members, only: %i[:index]
     resources :coporations, only: %i[:show]
+    resources :tasks
   end
 
   namespace :api do
