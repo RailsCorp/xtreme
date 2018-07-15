@@ -32,6 +32,7 @@ gem 'carrierwave'
 gem 'i18n_generators'
 gem 'enum_help'
 gem 'paper_trail'
+gem 'rmagick'
 
 gem 'slack-api'
 gem 'line-bot-api'

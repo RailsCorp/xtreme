@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :tasks
+  get 'home/index' => 'home#index'
   resources :users do
+    resources :tasks
     resources :groups
     resources :members
   end
