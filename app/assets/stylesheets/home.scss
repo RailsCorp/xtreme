@@ -2,13 +2,32 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .title_image {
+  margin: 0px;
   background: url('/images/img_0813.png');
   background-size: auto;
-  height: auto;
+  height: 718px;
   background-repeat: no-repeat;
   background-position: center;
-  .more {
-    text-align: center;
-    font-size: 100px;
+  .home_left {
+    padding-top: 20%;
+    padding-left: 10%;
+    padding-right: 60%;
+    a.button {
+      cursor: pointer;
+      opacity: 0.6;
+      background-color: #e44232;
+      border-radius: 4px;
+      color: #fff;
+      display: inline-block;
+      height: 130px;
+      width: 290px;
+      text-decoration: none;
+      .title{
+        font-size: 30px;
+        position: relative;
+        top: 45px;
+        left: 92px;
+      }
+    }
   }
 }
