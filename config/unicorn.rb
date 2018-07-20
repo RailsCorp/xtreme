@@ -2,8 +2,8 @@ worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 preload_app true
 
-listen '/vagrant/xtreme/tmp/unicorn.sock'
-pid    '/vagrant/xtreme/tmp/unicorn.pid'
+listen '/vagrant/xtreme/tmp/sockets/unicorn.sock'
+pid    '/vagrant/xtreme/tmp/pids/unicorn.pid'
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do

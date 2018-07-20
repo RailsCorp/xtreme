@@ -33,7 +33,7 @@ https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
 ターミナルで、
 
 ``
-vagrant box add centos/7
+    vagrant box add centos/7
 ``
 
 を打つ。
@@ -60,8 +60,17 @@ vagrant box add centos/7
 
 ここからは全てvagrantに入ってからの話。
 9. Gitインストール
-  `yum -y install git`でGitをインストール
-   確認として`git --version`を実行！　もし入らなかったら、ググって解決してください！
+
+  ``
+  yum -y install git
+  ``
+  でGitをインストール
+   確認として
+   ``
+   git --version
+   ``
+   を実行！　
+   もし入らなかったら、ググって解決してください！
 
 10. rbenvの導入
 
@@ -97,7 +106,17 @@ vagrant box add centos/7
 
   を実行。
 
-  `rbenv install 2.5.0`を実行し、`rbenv global 2.5.0`でglobalに設定。`ruby -v`でver2.5.0が入っているかを確認。
+  ``
+  rbenv install 2.5.0
+  ``を実行し、
+  ``
+  rbenv global 2.5.0
+  ``
+  でglobalに設定。
+  ``
+  ruby -v
+  ``
+  でver2.5.0が入っているかを確認。
 
 13. railsの導入
 
@@ -118,6 +137,13 @@ vagrant box add centos/7
   ``
   終了。
 
-  あとは、`git config`コマンドで、usernameとuser.emailを登録してくれれば、使えるようになるはず。
+  あとは、
+  ``git config``
+  コマンドで、usernameとuser.emailを登録してくれれば、使えるようになるはず。
 
   つまずいたら、Slack投げて！
+
+
+内容!
+
+xtreme.co.jp/users/#{user.name}/パラメータでgroupやcoporationとかtask``を渡す！
