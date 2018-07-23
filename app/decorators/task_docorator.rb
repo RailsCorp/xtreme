@@ -1,0 +1,2 @@
+class TaskDecorator < ApplicationDecorator
+end

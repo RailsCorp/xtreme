@@ -3,6 +3,16 @@ module Api
     before_action :set_user
     before_action :set_task
 
+    def index
+      @comments =
+        Comment
+          .with_task
+          .with_user
+          .order("id DESC")
+
+      @comments = CommentDecorator.decorate_collection(@comments)
+    end
+
     def create
       @comment = Comment.new(comment_params)
       if @comment.save
@@ -25,7 +35,6 @@ module Api
         :text
       ).merge(
         user_id: user.id
-      ).merge(
         task_id: task.id
       )
     end

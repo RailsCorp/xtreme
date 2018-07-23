@@ -1,6 +1,16 @@
 module Api
   class MemosController < ApplicationController
     before_action :set_task
+    
+    def index
+      @memos =
+        Memo
+          .with_task
+          .order("created_at DESC")
+
+      @memos = CommentDecorator.decorate_collection(@memos)
+    end
+
     def create
       @memo = Memo.new(memo_params)
       if @memo.save

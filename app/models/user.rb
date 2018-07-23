@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :groups, through: :groups
   has_many :tasks, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :user_tasks, dependent: :destroy
+  has_many :tasks, through: :user_tasks
 
   validates :name, presence: true
 end
