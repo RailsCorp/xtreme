@@ -3,7 +3,8 @@ module Api
     before_action :set_task, only: %i[update , destroy]
 
     def create
-      @task = Task.new(task_params)
+      @task = create_usecase
+      # 普通にストロングパラメータが使えないから、formオブジェクトでvalidateする
     end
 
     def update
@@ -20,15 +21,37 @@ module Api
     end
 
     private
+    def create_usecase
+      if task_params[:task_type].present?
+        Task.create_task(params)
+      else
+        raise "task_params is error"
+      end
+    end
+
     def set_task
       @task = Task.find(params[:id])
     end
 
     def task_params
       params.require(:task).permit(
-        :task,
-        :image,
-        :deadline
+        :task_type,
+        user_tasks: {
+          :content,
+          :image,
+          :deadline,
+          :complete,
+          :user_id,
+          :task_id
+        },
+        group_tasks: {
+          :content,
+          :image,
+          :deadline,
+          :complete,
+          :group_id,
+          :task_id
+        }
       )
     end
   end
