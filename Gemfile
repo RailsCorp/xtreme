@@ -35,6 +35,8 @@ gem 'i18n_generators'
 gem 'enum_help'
 gem 'paper_trail'
 gem 'rmagick'
+gem 'trailblazer'
+gem 'trailblazer-rails'
 
 gem 'slack-api'
 gem 'line-bot-api'
