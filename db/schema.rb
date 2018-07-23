@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180723123656) do
+ActiveRecord::Schema.define(version: 20180723155553) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "text", null: false
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20180723123656) do
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "task_type", null: false
+    t.integer "task_type", default: 0, null: false
     t.index ["task_type"], name: "index_tasks_on_task_type"
   end
 

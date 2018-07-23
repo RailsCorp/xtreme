@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  enum task_type: [:user, :group]
+  # enum task_type: [:user, :group]
 
   has_many :comments, dependent: :destroy
   has_many :memos, dependent: :destroy
@@ -8,7 +8,7 @@ class Task < ApplicationRecord
   has_many :group_tasks, dependent: :destroy
   has_many :groups, through: :group_tasks
 
-  validates :task_type, presense: true
+  validates :task_type, presence: true
 
   def create_task(params, current_user_id)
     task = Task.create!(
