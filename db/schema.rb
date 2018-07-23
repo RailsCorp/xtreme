@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180723084254) do
+ActiveRecord::Schema.define(version: 20180723105352) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "text", null: false
@@ -60,6 +60,20 @@ ActiveRecord::Schema.define(version: 20180723084254) do
     t.datetime "established", null: false
   end
 
+  create_table "group_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "content", null: false
+    t.text "image"
+    t.datetime "deadline"
+    t.boolean "complete", default: false, null: false
+    t.boolean "boolean", default: false, null: false
+    t.bigint "group_id", null: false
+    t.bigint "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_tasks_on_group_id"
+    t.index ["task_id"], name: "index_group_tasks_on_task_id"
+  end
+
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "introduce"
@@ -87,12 +101,8 @@ ActiveRecord::Schema.define(version: 20180723084254) do
   end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text "task", null: false
-    t.text "image"
-    t.datetime "deadline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "complete", default: false, null: false
     t.integer "task_type"
     t.index ["task_type"], name: "index_tasks_on_task_type"
   end
@@ -104,6 +114,19 @@ ActiveRecord::Schema.define(version: 20180723084254) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_infomations_on_user_id"
+  end
+
+  create_table "user_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "content", null: false
+    t.text "image"
+    t.datetime "deadline"
+    t.boolean "complete", default: false, null: false
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_user_tasks_on_task_id"
+    t.index ["user_id"], name: "index_user_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -132,8 +155,12 @@ ActiveRecord::Schema.define(version: 20180723084254) do
   add_foreign_key "coporation_tasks", "tasks"
   add_foreign_key "coporation_users", "coporations"
   add_foreign_key "coporation_users", "users"
+  add_foreign_key "group_tasks", "groups"
+  add_foreign_key "group_tasks", "tasks"
   add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
   add_foreign_key "memos", "tasks"
   add_foreign_key "user_infomations", "users"
+  add_foreign_key "user_tasks", "tasks"
+  add_foreign_key "user_tasks", "users"
 end
