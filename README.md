@@ -143,7 +143,16 @@ https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
 
   つまずいたら、Slack投げて！
 
+## pullしたらやったら必ずやること！
+``
+bundle install
+``
 
-内容!
+``
+bundle exec rails db:migrate
+``
+※ 必要に応じては、
 
-xtreme.co.jp/users/#{user.name}/パラメータでgroupやcoporationとかtask``を渡す！
+``
+bundle exec rails db:migrate:reset
+``
