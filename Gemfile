@@ -37,6 +37,7 @@ gem 'paper_trail'
 gem 'rmagick'
 gem 'trailblazer'
 gem 'trailblazer-rails'
+gem 'annotate', github: 'ctran/annotate_models'
 
 gem 'slack-api'
 gem 'line-bot-api'

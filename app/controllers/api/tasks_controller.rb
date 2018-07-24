@@ -36,22 +36,22 @@ module Api
     def task_params
       params.require(:task).permit(
         :task_type,
-        user_tasks: {
+        user_tasks: [
           :content,
           :image,
           :deadline,
           :complete,
           :user_id,
-          :task_id
-        },
-        group_tasks: {
+          :task_id,
+        ],
+        group_tasks: [
           :content,
           :image,
           :deadline,
           :complete,
           :group_id,
-          :task_id
-        }
+          :task_id,
+        ]
       )
     end
   end
