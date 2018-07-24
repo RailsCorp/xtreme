@@ -158,6 +158,8 @@ GEM
       request_store (~> 1.0)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
+    enumerize (2.2.2)
+      activesupport (>= 3.2)
     equalizer (0.0.11)
     erubi (1.7.1)
     eventmachine (1.2.7)
@@ -182,6 +184,10 @@ GEM
     formtastic_i18n (0.6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    gon (6.2.1)
+      actionpack (>= 3.0)
+      multi_json
+      request_store (>= 1.0)
     grape (1.0.3)
       activesupport
       builder
@@ -529,8 +535,10 @@ DEPENDENCIES
   devise
   draper
   enum_help
+  enumerize
   factory_bot_rails
   fakeweb!
+  gon
   grape
   grape-jbuilder
   hashie
