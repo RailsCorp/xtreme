@@ -18,6 +18,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 4.0'
 gem 'bcrypt', '~> 3.1.7'
+gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
 gem 'hashie'
 gem 'grape'
@@ -37,7 +38,10 @@ gem 'paper_trail'
 gem 'rmagick'
 gem 'trailblazer'
 gem 'trailblazer-rails'
-gem 'annotate', github: 'ctran/annotate_models'
+gem 'ransack'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+gem 'brakeman', :require => false
 
 gem 'slack-api'
 gem 'line-bot-api'
@@ -61,6 +65,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
+  gem 'rack-mini-profiler'
 end
 
 group :development do
