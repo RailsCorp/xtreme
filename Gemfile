@@ -44,6 +44,8 @@ gem 'wicked_pdf'
 gem 'brakeman', :require => false
 gem 'enumerize'
 gem 'gon'
+gem 'dotenv-rails'
+gem 'omniauth'
 
 gem 'slack-api'
 gem 'line-bot-api'
