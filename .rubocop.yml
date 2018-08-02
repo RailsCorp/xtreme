@@ -1,10 +1,56 @@
+
+# target_version:
+#   rubocop v0.34.2
+
+# 自動生成されるものはチェック対象から除外する
 AllCops:
+  TargetRubyVersion: 2.5.0
   Exclude:
     - "vendor/**/*" # rubocop config/default.yml
     - "db/schema.rb"
   DisplayCopNames: true
 
+Rails/ActionFilter:
+  EnforcedStyle: action
+  SupportedStyles:
+    - action
+    - filter
+  Include:
+    - app/controllers/**/*.rb
+
+Rails/HasAndBelongsToMany:
+  Include:
+    - app/models/**/*.rb
+
+Rails/Output:
+  Include:
+    - app/**/*.rb
+    - config/**/*.rb
+    - db/**/*.rb
+    - lib/**/*.rb
+
+Rails/ReadWriteAttribute:
+  Include:
+    - app/models/**/*.rb
+
+Rails/ScopeArgs:
+  Include:
+    - app/models/**/*.rb
+
+Rails/Validation:
+  Include:
+    - app/models/**/*.rb
+
 ##################### Style ##################################
+
+# この 2 つは単発で動かすのが分かっているので Object を汚染しても問題ない。
+# spec/dummy は Rails Engine を開発するときに絶対に引っかかるので入れておく。
+Style/MixinUsage:
+  Exclude:
+    - "bin/setup"
+    - "bin/update"
+    - "spec/dummy/bin/setup"
+    - "spec/dummy/bin/update"
 
 # redirect_to xxx and return のイディオムを維持したい
 Style/AndOr:
@@ -45,7 +91,10 @@ Style/CollectionMethods:
     reduce: "inject"
 
 # Hash#has_key? は許可したい
-Style/DeprecatedHashMethods:
+tyle/PreferredHashMethods:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
   Enabled: false
 
 # ドキュメントの無い public class を許可する
@@ -93,10 +142,6 @@ Style/IfUnlessModifier:
 Style/IndentHash:
   EnforcedStyle: consistent
 
-# private/protected は一段深くインデントする
-Style/IndentationConsistency:
-  EnforcedStyle: rails
-
 # scope 等は複数行でも lambda ではなく ->{} で揃えた方が見た目が綺麗
 Style/Lambda:
   Enabled: false
@@ -136,13 +181,6 @@ Style/Semicolon:
 Style/SignalException:
   EnforcedStyle: only_raise
 
-# `||` も align に使うことがあるので追加する
-Style/SpaceAroundOperators:
-  MultiSpaceAllowedForOperators:
-    - "="
-    - "=>"
-    - "||"
-
 # * 式展開したい場合に書き換えるのが面倒
 # * 文章ではダブルクォートよりもシングルクォートの方が頻出する
 # ことから EnforcedStyle: double_quotes 推奨
@@ -162,26 +200,200 @@ Style/SingleLineBlockParams:
 # * model の association
 # * controller の callback
 # 辺りの桁揃えで引っかかるので全体的にチェックしない
-Style/SingleSpaceBeforeFirstArg:
+
+Layout/DotPosition:
+  EnforcedStyle: leading
+
+Layout/MultilineMethodCallIndentation:
   Enabled: false
 
-# 複数行の場合はケツカンマを入れる
-Style/TrailingComma:
-  EnforcedStyleForMultiline: comma
+Layout/SpaceBeforeFirstArg:
+  Enabled: false
+
+Layout/ExtraSpacing:
+  Enabled: false
+
+Layout/CommentIndentation:
+  Enabled: false
 
 ##################### Lint ##################################
 
-# * 同名のメソッドがある場合にローカル変数に `_` を付ける
-# * 一時変数として `_` を付ける
-# というテクニックは頻出する
-Lint/UnderscorePrefixedVariableName:
-  Enabled: false
+#################### Lint ################################
+### Warnings
 
-# 子クラスで実装させるつもりのメソッドで引っかかるので
+Lint/AmbiguousOperator:
+  Description: >-
+                 Checks for ambiguous operators in the first argument of a
+                 method invocation without parentheses.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#parens-as-args'
+  Enabled: true
+
+Lint/AmbiguousRegexpLiteral:
+  Description: >-
+                 Checks for ambiguous regexp literals in the first argument of
+                 a method invocation without parenthesis.
+  Enabled: true
+
+Lint/AssignmentInCondition:
+  Description: "Don't use assignment in conditions."
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition'
+  Enabled: true
+
+Lint/BlockAlignment:
+  Description: 'Align block ends correctly.'
+  Enabled: true
+
+Lint/ConditionPosition:
+  Description: >-
+                 Checks for condition placed in a confusing position relative to
+                 the keyword.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#same-line-condition'
+  Enabled: true
+
+Lint/Debugger:
+  Description: 'Check for debugger calls.'
+  Enabled: true
+
+Lint/DefEndAlignment:
+  Description: 'Align ends corresponding to defs correctly.'
+  Enabled: true
+
+Lint/DeprecatedClassMethods:
+  Description: 'Check for deprecated class method calls.'
+  Enabled: true
+
+Lint/ElseLayout:
+  Description: 'Check for odd code arrangement in an else block.'
+  Enabled: true
+
+Lint/EmptyEnsure:
+  Description: 'Checks for empty ensure block.'
+  Enabled: true
+
+Lint/EmptyInterpolation:
+  Description: 'Checks for empty string interpolation.'
+  Enabled: true
+
+Lint/EndAlignment:
+  Description: 'Align ends correctly.'
+  Enabled: true
+
+Lint/EndInMethod:
+  Description: 'END blocks should not be placed inside method definitions.'
+  Enabled: true
+
+Lint/EnsureReturn:
+  Description: 'Do not use return in an ensure block.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-return-ensure'
+  Enabled: true
+
+Lint/Eval:
+  Description: 'The use of eval represents a serious security risk.'
+  Enabled: true
+
+Lint/HandleExceptions:
+  Description: "Don't suppress exception."
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#dont-hide-exceptions'
+  Enabled: true
+
+Lint/LiteralInCondition:
+  Description: 'Checks of literals used in conditions.'
+  Enabled: true
+
+Lint/LiteralInInterpolation:
+  Description: 'Checks for literals used in interpolation.'
+  Enabled: true
+
+Lint/Loop:
+  Description: >-
+                 Use Kernel#loop with break rather than begin/end/until or
+                 begin/end/while for post-loop tests.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#loop-with-break'
+  Enabled: true
+
+Lint/ParenthesesAsGroupedExpression:
+  Description: >-
+                 Checks for method calls with a space before the opening
+                 parenthesis.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#parens-no-spaces'
+  Enabled: true
+
+Lint/RequireParentheses:
+  Description: >-
+                 Use parentheses in the method call to avoid confusion
+                 about precedence.
+  Enabled: true
+
+Lint/RescueException:
+  Description: 'Avoid rescuing the Exception class.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-blind-rescues'
+  Enabled: true
+
+Lint/ShadowingOuterLocalVariable:
+  Description: >-
+                 Do not use the same name as outer local variable
+                 for block arguments or block local variables.
+  Enabled: true
+
+Lint/SpaceBeforeFirstArg:
+  Description: >-
+                 Put a space between a method name and the first argument
+                 in a method call without parentheses.
+  Enabled: true
+
+Lint/StringConversionInInterpolation:
+  Description: 'Checks for Object#to_s usage in string interpolation.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-to-s'
+  Enabled: true
+
+Lint/UnderscorePrefixedVariableName:
+  Description: 'Do not use prefix `_` for a variable that is used.'
+  Enabled: true
+
+Lint/UnusedBlockArgument:
+  Description: 'Checks for unused block arguments.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
+  Enabled: true
+
 Lint/UnusedMethodArgument:
-  Enabled: false
+  Description: 'Checks for unused method arguments.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
+  Enabled: true
+
+Lint/UnreachableCode:
+  Description: 'Unreachable code.'
+  Enabled: true
+
+Lint/UselessAccessModifier:
+  Description: 'Checks for useless access modifiers.'
+  Enabled: true
+
+Lint/UselessAssignment:
+  Description: 'Checks for useless assignment to a local variable.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
+  Enabled: true
+
+Lint/UselessComparison:
+  Description: 'Checks for comparison of something with itself.'
+  Enabled: true
+
+Lint/UselessElseWithoutRescue:
+  Description: 'Checks for useless `else` in `begin..end` without `rescue`.'
+  Enabled: true
+
+Lint/UselessSetterCall:
+  Description: 'Checks for useless setter call to a local variable.'
+  Enabled: true
+
+Lint/Void:
+  Description: 'Possible use of operator/literal/variable in void context.'
+  Enabled: true
 
 ##################### Metrics ##################################
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
 
 # 30 まではギリギリ許せる範囲だった
 Metrics/AbcSize:
