@@ -8,10 +8,10 @@ module Api
       end
     end
 
-    def destroy
-    end
+    def destroy; end
 
     private
+
     def set_user
       @user = User.find(params[:id])
     end

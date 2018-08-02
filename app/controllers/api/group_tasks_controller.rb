@@ -15,11 +15,8 @@ module Api
       @group = Group.find(params[:group_id])
     end
 
-    def set_group_task
-    end
+    def set_group_task; end
 
-    def group_tasks_param
-
-    end
+    def group_tasks_param; end
   end
 end

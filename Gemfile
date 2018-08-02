@@ -1,80 +1,80 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
+gem "activeadmin", github: "gregbell/active_admin"
+gem "bcrypt", "~> 3.1.7"
+gem "brakeman", require: false
+gem "bullet", group: :development
+gem "cancancan", "~> 2.0"
+gem "capistrano-rails", group: :development # Use Capistrano for deployment
+gem "carrierwave"
+gem "coffee-rails", "~> 4.2"
+gem "devise"
+gem "dotenv-rails"
+gem "draper"
+gem "enum_help"
+gem "enumerize"
+gem "gon"
+gem "grape"
+gem "grape-jbuilder"
+gem "hashie"
+gem "i18n_generators"
+gem "jbuilder", "~> 2.5"
+gem "kaminari"
+gem "mysql2", "0.5.2"
+gem "nginx"
+gem "omniauth"
+gem "paper_trail"
+gem "pry-rails"
+gem "puma", "~> 3.7" # Use Puma as the app server
 gem "rails", "~> 5.2.0"
-gem 'mysql2', '0.5.2'
-gem 'unicorn'
-gem 'nginx'
-gem 'puma', '~> 3.7' # Use Puma as the app server
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'therubyracer', platforms: :ruby
-gem 'coffee-rails', '~> 4.2'
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
-gem 'redis', '~> 4.0'
-gem 'bcrypt', '~> 3.1.7'
-gem 'activeadmin', github: 'gregbell/active_admin'
-gem 'devise'
-gem 'hashie'
-gem 'grape'
-gem 'grape-jbuilder'
-gem 'capistrano-rails', group: :development  # Use Capistrano for deployment
-gem 'bullet', group: :development
-gem 'pry-rails'
-gem 'kaminari'
-gem 'cancancan', '~> 2.0'
-gem 'rails_admin'
-gem 'webpacker'
-gem 'draper'
-gem 'carrierwave'
-gem 'i18n_generators'
-gem 'enum_help'
-gem 'paper_trail'
-gem 'rmagick'
-gem 'trailblazer'
-gem 'trailblazer-rails'
-gem 'ransack'
-gem 'wkhtmltopdf-binary'
-gem 'wicked_pdf'
-gem 'brakeman', :require => false
-gem 'enumerize'
-gem 'gon'
-gem 'dotenv-rails'
-gem 'omniauth'
+gem "rails_admin"
+gem "ransack"
+gem "redis", "~> 4.0"
+gem "rmagick"
+gem "sass-rails", "~> 5.0"
+gem "therubyracer", platforms: :ruby
+gem "trailblazer"
+gem "trailblazer-rails"
+gem "turbolinks", "~> 5"
+gem "uglifier", ">= 1.3.0"
+gem "unicorn"
+gem "webpacker"
+gem "wicked_pdf"
+gem "wkhtmltopdf-binary"
 
-gem 'slack-api'
-gem 'line-bot-api'
+gem "line-bot-api"
+gem "slack-api"
 
-gem 'react-rails'
+gem "react-rails"
 
-gem 'slim-rails'
-gem 'html2slim'
+gem "html2slim"
+gem "slim-rails"
 
 group :development, :staging do
-  gem 'rubocop', '~> 0.55.0', require: false
+  gem "rubocop", "~> 0.55.0", require: false
 end
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'better_errors'
-  gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
-  gem 'rspec-rails'
-  gem 'fakeweb' , github: 'chrisk/fakeweb'
-  gem 'rails-controller-testing'
-  gem 'factory_bot_rails'
-  gem 'rails-controller-testing'
-  gem 'rack-mini-profiler'
+  gem "better_errors"
+  gem "byebug", platforms: %i[mri mingw x64_mingw]
+  gem "capybara", "~> 2.13"
+  gem "factory_bot_rails"
+  gem "fakeweb", github: "chrisk/fakeweb"
+  gem "rack-mini-profiler"
+  gem "rails-controller-testing"
+  gem "rails-controller-testing"
+  gem "rspec-rails"
+  gem "selenium-webdriver"
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "listen", ">= 3.0.5", "< 3.2"
+  gem "spring"
+  gem "spring-watcher-listen", "~> 2.0.0"
+  gem "web-console", ">= 3.3.0"
 end

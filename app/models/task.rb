@@ -28,7 +28,7 @@ class Task < ApplicationRecord
     task.create_sub(params, current_user_id)
   end
 
-  def create_sub(params, current_user_id)
+  def create_sub(params, _current_user_id)
     if params[:task_type] == "user"
       self.user_task = UserTask.create!(
         content: params[:user_task][:content],

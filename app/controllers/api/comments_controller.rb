@@ -5,10 +5,10 @@ module Api
 
     def index
       @comments =
-        Comment
-          .with_task
-          .with_user
-          .order("id DESC")
+        Comment.
+          with_task.
+          with_user.
+          order("id DESC")
 
       @comments = CommentDecorator.decorate_collection(@comments)
     end
@@ -22,6 +22,7 @@ module Api
     end
 
     private
+
     def set_user
       user = User.find(params[:user_id])
     end

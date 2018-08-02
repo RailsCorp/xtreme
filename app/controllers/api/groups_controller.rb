@@ -5,7 +5,6 @@ module Api
     def create
       @group = Group.new(group_params)
       if @group.save
-      else
       end
     end
 
@@ -22,6 +21,7 @@ module Api
     end
 
     private
+
     def set_group
       @group = Group.find(params[:id])
     end

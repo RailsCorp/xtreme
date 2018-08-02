@@ -9,10 +9,10 @@ module Users
     def execute
       # taskのソートを最終的にはClientで決められるようにしたい！
       user_tasks =
-        UserTask
-          .where(user_id: @current_user_id)
-          .order("id DESC")
-          .page(@page)
+        UserTask.
+          where(user_id: @current_user_id).
+          order("id DESC").
+          page(@page)
 
       TaskDecorator.decorate_collection(user_tasks)
     end

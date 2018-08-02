@@ -18,7 +18,7 @@
 #  name                   :string(255)
 #
 
-require 'test_helper'
+require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   # test "the truth" do

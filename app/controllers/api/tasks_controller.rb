@@ -21,6 +21,7 @@ module Api
     end
 
     private
+
     def create_usecase
       if task_params[:task_type].present?
         Task.create_task(params)
@@ -36,21 +37,21 @@ module Api
     def task_params
       params.require(:task).permit(
         :task_type,
-        user_tasks: [
-          :content,
-          :image,
-          :deadline,
-          :complete,
-          :user_id,
-          :task_id,
+        user_tasks: %i[
+          content
+          image
+          deadline
+          complete
+          user_id
+          task_id
         ],
-        group_tasks: [
-          :content,
-          :image,
-          :deadline,
-          :complete,
-          :group_id,
-          :task_id,
+        group_tasks: %i[
+          content
+          image
+          deadline
+          complete
+          group_id
+          task_id
         ]
       )
     end
