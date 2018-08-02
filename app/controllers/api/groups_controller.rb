@@ -1,6 +1,7 @@
 module Api
   class GroupsController < ApplicationController
-    before_action :set_group, only: %i[update , destroy]
+    before_action :set_group, only: %i[update destroy]
+
     def create
       @group = Group.new(group_params)
       if @group.save
@@ -10,6 +11,7 @@ module Api
 
     def update
       if @group.update(group_params)
+        @group = Group.decorates(@group)
       else
         raise "error"
       end
