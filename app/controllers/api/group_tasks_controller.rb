@@ -15,8 +15,21 @@ module Api
       @group = Group.find(params[:group_id])
     end
 
-    def set_group_task; end
+    def set_group_task
+      @group_task = GroupTask
+    end
 
-    def group_tasks_param; end
+    def group_tasks_param
+      params.require(:group_tasks).permit(
+        :content,
+        :image,
+        :deadline,
+        :complete,
+        :boolean
+      ).merge(
+        group_id: @group_id,
+        task_id: @task_id
+      )
+    end
   end
 end

@@ -67,7 +67,6 @@ group :development, :test do
   gem "fakeweb", github: "chrisk/fakeweb"
   gem "rack-mini-profiler"
   gem "rails-controller-testing"
-  gem "rails-controller-testing"
   gem "rspec-rails"
   gem "selenium-webdriver"
 end

@@ -8,7 +8,7 @@ module Groups
 
     def execute
       # taskのソートを最終的にはClientで決められるようにしたい！
-      group = Group.member.where(user_id: @current_user_id)
+      # @members = Group.member.where(user_id: @current_user_id)
       group_tasks =
         GroupTask.
           order("id DESC").

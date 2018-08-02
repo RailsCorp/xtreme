@@ -1,23 +1,25 @@
 module Api
   class TasksController < ApplicationController
-    before_action :set_task, only: %i[update , destroy]
+    before_action :set_task, only: %i[update destroy]
 
     def create
       @task = create_usecase
+      @task = TaskDecorattor.decorate(@task)
+      render :show, status: :created
       # 普通にストロングパラメータが使えないから、formオブジェクトでvalidateする
     end
 
     def update
       if @task.update(task_params)
-        # redirect_to :show
+        render :show, status: :created
       else
-        # エラー投げる
+        @task.errors.full_messages
       end
     end
 
     def destroy
       @task.destroy
-      # redirect_to :show
+      render json: { id: params[:id].to_i }
     end
 
     private

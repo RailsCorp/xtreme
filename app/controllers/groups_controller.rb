@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
         order("created_at DESC").
         page(params[:page])
 
-    @group_tasks = GroupTask.decorator(@group_tasks)
+    @group_tasks = GroupTaskDecotrator.decorator(@group_tasks)
   end
 
   private

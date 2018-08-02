@@ -5,12 +5,13 @@ module Api
     def create
       @group = Group.new(group_params)
       if @group.save
+        @group = GroupDecorator.decorate(@group)
       end
     end
 
     def update
       if @group.update(group_params)
-        @group = Group.decorates(@group)
+        @group = GroupDecorator.decorates(@group)
       else
         raise "error"
       end

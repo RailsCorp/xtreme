@@ -8,7 +8,7 @@ module Api
           with_task.
           order("created_at DESC")
 
-      @memos = CommentDecorator.decorate_collection(@memos)
+      @memos = MemoDecorator.decorate_collection(@memos)
     end
 
     def create
