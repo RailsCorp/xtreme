@@ -42,13 +42,8 @@ jobs:
 
       # run tests!
       - run:
-          name: run rspec
-          command: |
-            mkdir /tmp/test-results
-            bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
+          name: Rspec
+          command: bundle exec rspec --color --require spec_helper --format progress spec
 
       # Save test results for timing analysis
       - store_test_results:
