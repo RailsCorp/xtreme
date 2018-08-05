@@ -1,9 +1,12 @@
+rails_root = File.expand_path('../../', __FILE__)
+
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+working_directory rails_root
 timeout 15
 preload_app true
 
-listen '/vagrant/xtreme/tmp/sockets/unicorn.sock'
-pid    '/vagrant/xtreme/tmp/pids/unicorn.pid'
+listen "#{rails_root}/tmp/unicorn.sock"
+pid "#{rails_root}/tmp/unicorn.pid"
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do
@@ -24,5 +27,5 @@ after_fork do |server, worker|
     ActiveRecord::Base.establish_connection
 end
 
-stderr_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
-stdout_path File.expand_path('log/unicorn.log', ENV['RAILS_ROOT'])
+stderr_path "#{rails_root}/log/unicorn_error.log"
+stdout_path "#{rails_root}/log/unicorn.log"
