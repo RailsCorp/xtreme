@@ -1,4 +1,4 @@
-class HomeDecorator < ApplicationDecorator
+class GroupDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

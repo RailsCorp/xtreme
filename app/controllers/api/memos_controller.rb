@@ -1,14 +1,14 @@
 module Api
   class MemosController < ApplicationController
     before_action :set_task
-    
+
     def index
       @memos =
-        Memo
-          .with_task
-          .order("created_at DESC")
+        Memo.
+          with_task.
+          order("created_at DESC")
 
-      @memos = CommentDecorator.decorate_collection(@memos)
+      @memos = MemoDecorator.decorate_collection(@memos)
     end
 
     def create
@@ -21,6 +21,7 @@ module Api
     end
 
     private
+
     def set_task
       @task = Task.find(params[:task_id])
     end
