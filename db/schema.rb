@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180723155553) do
+ActiveRecord::Schema.define(version: 2018_08_06_122814) do
 
-  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -22,59 +22,7 @@ ActiveRecord::Schema.define(version: 20180723155553) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "coporation_groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "group_id", null: false
-    t.bigint "coporation_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["coporation_id"], name: "index_coporation_groups_on_coporation_id"
-    t.index ["group_id"], name: "index_coporation_groups_on_group_id"
-  end
-
-  create_table "coporation_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "task_id", null: false
-    t.bigint "coporation_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["coporation_id"], name: "index_coporation_tasks_on_coporation_id"
-    t.index ["task_id"], name: "index_coporation_tasks_on_task_id"
-  end
-
-  create_table "coporation_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id", null: false
-    t.bigint "coporation_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["coporation_id"], name: "index_coporation_users_on_coporation_id"
-    t.index ["user_id"], name: "index_coporation_users_on_user_id"
-  end
-
-  create_table "coporations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name", null: false
-    t.text "image"
-    t.text "introduce"
-    t.string "owner", null: false
-    t.text "address", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "established", null: false
-  end
-
-  create_table "group_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text "content", null: false
-    t.text "image"
-    t.datetime "deadline"
-    t.boolean "complete", default: false, null: false
-    t.boolean "boolean", default: false, null: false
-    t.bigint "group_id", null: false
-    t.bigint "task_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_tasks_on_group_id"
-    t.index ["task_id"], name: "index_group_tasks_on_task_id"
-  end
-
-  create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "introduce"
     t.text "image"
@@ -82,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180723155553) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
@@ -92,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180723155553) do
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
-  create_table "memos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "memos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "memo", null: false
     t.bigint "task_id", null: false
     t.datetime "created_at", null: false
@@ -100,14 +48,14 @@ ActiveRecord::Schema.define(version: 20180723155553) do
     t.index ["task_id"], name: "index_memos_on_task_id"
   end
 
-  create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "task_type", default: 0, null: false
     t.index ["task_type"], name: "index_tasks_on_task_type"
   end
 
-  create_table "user_infomations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_infomations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "role"
     t.string "department"
     t.text "image"
@@ -117,20 +65,7 @@ ActiveRecord::Schema.define(version: 20180723155553) do
     t.index ["user_id"], name: "index_user_infomations_on_user_id"
   end
 
-  create_table "user_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text "content", null: false
-    t.text "image"
-    t.datetime "deadline"
-    t.boolean "complete", default: false, null: false
-    t.bigint "user_id", null: false
-    t.bigint "task_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["task_id"], name: "index_user_tasks_on_task_id"
-    t.index ["user_id"], name: "index_user_tasks_on_user_id"
-  end
-
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -150,18 +85,8 @@ ActiveRecord::Schema.define(version: 20180723155553) do
 
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
-  add_foreign_key "coporation_groups", "coporations"
-  add_foreign_key "coporation_groups", "groups"
-  add_foreign_key "coporation_tasks", "coporations"
-  add_foreign_key "coporation_tasks", "tasks"
-  add_foreign_key "coporation_users", "coporations"
-  add_foreign_key "coporation_users", "users"
-  add_foreign_key "group_tasks", "groups"
-  add_foreign_key "group_tasks", "tasks"
   add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
   add_foreign_key "memos", "tasks"
   add_foreign_key "user_infomations", "users"
-  add_foreign_key "user_tasks", "tasks"
-  add_foreign_key "user_tasks", "users"
 end

@@ -19,8 +19,6 @@ gem "draper"
 gem "enum_help"
 gem "enumerize"
 gem "gon"
-gem "grape"
-gem "grape-jbuilder"
 gem "hashie"
 gem "i18n_generators"
 gem "jbuilder", "~> 2.5"
@@ -49,6 +47,7 @@ gem "wkhtmltopdf-binary"
 
 gem "line-bot-api"
 gem "slack-api"
+gem "slack-notifier"
 
 gem "react-rails"
 
@@ -67,6 +66,7 @@ group :development, :test do
   gem "fakeweb", github: "chrisk/fakeweb"
   gem "rack-mini-profiler"
   gem "rails-controller-testing"
+  gem "rails_best_practices", require: false
   gem "rspec-rails"
   gem "selenium-webdriver"
 end

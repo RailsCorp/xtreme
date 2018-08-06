@@ -21,6 +21,8 @@ module Xtreme
     end
 
     config.generators do |g|
+      g.assets false
+      g.helper false
       g.test_framework :rspec,
                        fixtures: true, # モデル作成時にフィクスチャの作成を有効化(後述のfactory_botが適用される)
                        view_specs: false,
