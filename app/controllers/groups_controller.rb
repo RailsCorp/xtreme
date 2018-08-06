@@ -1,20 +1,20 @@
 class GroupsController < ApplicationController
-  before_action :set_group
+  before_action :set_group, only: %i[show]
+  before_action :current_user_valid?
 
-  def show
-    @group_tasks =
-      @group.
-        group_tasks.
-        includes(:user).
-        order("created_at DESC").
-        page(params[:page])
-
-    @group_tasks = GroupTaskDecotrator.decorator(@group_tasks)
-  end
+  def show; end
 
   private
 
   def set_group
     @group = Group.find(params[:id])
+  end
+
+  def current_user_valid?
+    if @group.member.include?(current_user)
+      true
+    else
+      @group.errors.full_messages # ここは変更
+    end
   end
 end

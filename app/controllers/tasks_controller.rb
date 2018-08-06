@@ -1,8 +1,25 @@
 class TasksController < ApplicationController
+  before_action :set_group, only: %i[index]
+  before_action :current_user_valid?
   def index
-    # TaskQueryの引数にcurrent_userが持ってるgroupのidの配列を渡したい！
-    # Grouptasksの引数を考え直す！
-    @user_tasks = Users::TaskQuery.new(params[:page], params, current_user.id).execute
-    @group_tasks = Groups::TaskQuery.new(params[:page], params, current_user.id).execute
+    @tasks = TaskQuery.new(
+      @group.id,
+      params[:page],
+      current_user.id
+    ).execute
+  end
+
+  private
+
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
+
+  def current_user_valid?
+    if @group.member.include?(current_user)
+      true
+    else
+      @group.errors.full_messages # ここは変更
+    end
   end
 end
