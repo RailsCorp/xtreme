@@ -9,8 +9,6 @@
 #
 
 class Task < ApplicationRecord
-  enum task_type: { user: 0, group: 1 }
-
   has_many :comments, dependent: :destroy
   has_many :memos, dependent: :destroy
   belongs_to :groups
