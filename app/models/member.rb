@@ -13,6 +13,10 @@
 class Member < ApplicationRecord
   belongs_to :user
   belongs_to :group
-
-  validates :name, presence: true
+  enum role: { regular: 0, leader: 1 }
+  validates :role, presence: true
+  validates :user_id, presence: true
+  validates :group_id, presence: true
+  scope :with_group, -> { includes(:group) }
+  scope :with_user, -> { includes(:user) }
 end

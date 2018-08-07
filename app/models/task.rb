@@ -9,38 +9,14 @@
 #
 
 class Task < ApplicationRecord
-  # enum task_type: [:user, :group]
+  enum task_type: { user: 0, group: 1 }
 
   has_many :comments, dependent: :destroy
   has_many :memos, dependent: :destroy
-  has_many :user_tasks, dependent: :destroy
-  has_many :users, through: :user_tasks
-  has_many :group_tasks, dependent: :destroy
-  has_many :groups, through: :group_tasks
-
+  belongs_to :groups
+  validates :title, presence: true
+  validates :group_id, presence: true
   validates :task_type, presence: true
-
-  def create_task(params, current_user_id)
-    task = Task.create!(
-      task_type: params[:task_type]
-    ).cast
-
-    task.create_sub(params, current_user_id)
-  end
-
-  def create_sub(params, _current_user_id)
-    if params[:task_type] == "user"
-      self.user_task = UserTask.create!(
-        content: params[:user_task][:content],
-        image: params[:user_task][:image],
-        deadline: params[:user_task][:deadline],
-        complete: false,
-        user_id: cuurent_user_id,
-        task_id: self.id
-      )
-    elsif params[:task_type] == "group"
-    else
-      raise "Error : task_type is wrong"
-    end
-  end
+  scope :with_group, -> { includes(:group) }
+  scope :search_with_title, ->(title) { where(title: title) }
 end
