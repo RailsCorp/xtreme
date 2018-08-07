@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
+  root "groups#show"
   get "home/index" => "home#index"
-  resources :tasks, only: %i[index]
-  resources :groups, only: %i[show]
-
-  namespace :api do
-    # resources :users
-    resources :groups, only: %i[show] do
-      resources :group_tasks, only: %i[index create update destroy]
-    end
-    resources :tasks, only: %i[create update destroy] do
-      resources :comments, only: %i[create destory]
-      resources :memos, only: %i[create destory]
-    end
+  resources :groups, only: %i[create update destroy show] do
+    resources :tasks, only: %i[index create update destroy show]
+  end
+  resources :tasks, only: %i[index create update destroy show] do
+    resources :comments, only: %i[index create]
+    resources :memos, only: %i[index create]
   end
 end
