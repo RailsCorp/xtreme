@@ -49,8 +49,6 @@ gem "line-bot-api"
 gem "slack-api"
 gem "slack-notifier"
 
-gem "react-rails"
-
 gem "html2slim"
 gem "slim-rails"
 
