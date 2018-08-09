@@ -27,6 +27,4 @@ class User < ApplicationRecord
   has_many :groups, through: :members
   has_many :comments, dependent: :destroy
   has_one :user_infomation
-
-  validates :name, presence: true
 end
