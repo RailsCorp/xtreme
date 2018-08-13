@@ -13,7 +13,10 @@
 
 FactoryBot.define do
   factory :user_infomation do
+    name "test"
     role "MyString"
+    department "Test"
     image "MyText"
+    association :user, factory: :user
   end
 end
