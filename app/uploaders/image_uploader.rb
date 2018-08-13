@@ -56,13 +56,6 @@ class ImageUploader < CarrierWave::Uploader::Base
       "#{Rails.root}/spec/support/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
   end
-
-  config.after(:all) do
-    if Rails.env.test?
-      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
-    end
-  end
-
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
