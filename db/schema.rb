@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_13_021718) do
+ActiveRecord::Schema.define(version: 2018_08_13_054252) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text", null: false
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(version: 2018_08_13_021718) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_memos_on_task_id"
+  end
+
+  create_table "task_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image", null: false
+    t.bigint "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_task_images_on_task_id"
   end
 
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -92,5 +100,6 @@ ActiveRecord::Schema.define(version: 2018_08_13_021718) do
   add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
   add_foreign_key "memos", "tasks"
+  add_foreign_key "task_images", "tasks"
   add_foreign_key "user_infomations", "users"
 end
