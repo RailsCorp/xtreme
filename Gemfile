@@ -57,16 +57,32 @@ group :development, :staging do
 end
 
 group :development, :test do
+  gem "addressable"
   gem "better_errors"
   gem "byebug", platforms: %i[mri mingw x64_mingw]
-  gem "capybara", "~> 2.13"
   gem "factory_bot_rails"
   gem "fakeweb", github: "chrisk/fakeweb"
+  gem "guard-rspec"
   gem "rack-mini-profiler"
   gem "rails-controller-testing"
   gem "rails_best_practices", require: false
+  gem "rspec"
+  gem "rspec-core"
+  gem "rspec-expectations"
+  gem "rspec-parameterized"
   gem "rspec-rails"
+  gem "rspec-support"
+  gem "spring-commands-rspec"
+  gem "webmock"
+end
+
+group :test do
+  gem "capybara"
+  gem "database_cleaner"
+  gem "faker"
+  gem "launchy"
   gem "selenium-webdriver"
+  gem "shoulda-matchers", require: false
 end
 
 group :development do

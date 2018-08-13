@@ -12,5 +12,6 @@
 FactoryBot.define do
   factory :memo do
     memo "MyText"
+    association :task, factory: :task
   end
 end

@@ -12,5 +12,15 @@
 require "rails_helper"
 
 RSpec.describe Memo, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Memo" do
+    context "association" do
+      subject { create(:memo) }
+      it { is_expected.to belong_to(:task) }
+    end
+    context "validation" do
+      subject { create(:memo) }
+      it { is_expected.to validate_presence_of(:memo) }
+      it { is_expected.to validate_presence_of(:task_id) }
+    end
+  end
 end

@@ -11,10 +11,9 @@
 class Task < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :memos, dependent: :destroy
-  belongs_to :groups
+  belongs_to :group
   validates :title, presence: true
   validates :group_id, presence: true
-  validates :task_type, presence: true
   scope :with_group, -> { includes(:group) }
   scope :search_with_title, ->(title) { where(title: title) }
 end
