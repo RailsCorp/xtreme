@@ -8,6 +8,8 @@ RSpec.describe User, type: :model do
       it { is_expected.to have_many(:groups).through(:members) }
       it { is_expected.to have_many(:comments) }
       it { is_expected.to have_one(:user_infomation) }
+      it { is_expected.to have_one(:user_admin) }
+      it { is_expected.to have_one(:admin_user).through(:user_admin) }
     end
     context "validation" do
       subject { create(:user) }
