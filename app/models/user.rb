@@ -25,5 +25,10 @@ class User < ApplicationRecord
   has_many :members, dependent: :destroy
   has_many :groups, through: :members
   has_many :comments, dependent: :destroy
-  has_one :user_infomation
+  has_one :user_infomation, dependent: :destroy
+  has_one :user_admin, dependent: :destroy
+  has_one :admin_user, through: :user_admin
+  validates :email, presence: true
+  validates :password, presence: true
+  validates :encrypted_password, presence: true
 end
