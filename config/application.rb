@@ -14,6 +14,7 @@ module Xtreme
     config.autoload_paths += Dir[Rails.root.join("app", "apis", "*")]
     config.time_zone = "Tokyo"
     config.i18n.default_locale = :ja
+    config.logger = ActiveSupport::Logger.new("log/test.log")
 
     # Grape+JBuilderを使うための設定
     config.middleware.use(Rack::Config) do |env|
