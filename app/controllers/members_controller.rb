@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
-  before_acrion :set_member, only: %i[update destroy]
-  before_acrion :set_group
+  before_action :set_member, only: %i[update destroy]
+  before_action :set_group
 
   def index
     @members = MemberQuery.new(
@@ -28,9 +28,9 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    if @group.member.include?(@member)
+    if @group.members.include?(@member)
       @member.destroy
-      render :index, formats: :json
+      render json: { id: params[:id].to_i }
     else
       render json: @member.errors.full_messages, status: :unprocessable_entity
     end
