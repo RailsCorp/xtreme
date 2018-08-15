@@ -1,6 +1,11 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: %i[update destroy show]
-  before_action :current_user_valid?
+  before_action :authenticate_user!, except: %i[index create]
+
+  def index
+    @groups = GroupQuery.new(current_user.id).execute
+    render :index, formats: :json
+  end
 
   def create
     @group = Group.new(group_params)
@@ -14,7 +19,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      @group = GroupDecorator.decorates(@group)
+      @group = GroupDecorator.decorate(@group)
       render :show, formats: :json
     else
       render json: @group.errors.full_messages, status: :unprocessable_entity
@@ -44,11 +49,13 @@ class GroupsController < ApplicationController
     )
   end
 
-  def current_user_valid?
-    if @group.member.include?(current_user)
+  # 以下のvalidationはどうしようか考え中、のちに変更予定
+  def authenticate_user!
+    if @group.members.include?(current_user.id)
       true
     else
-      @group.errors.full_messages # ここは変更
+      return @group.errors.full_messages
     end
+    true
   end
 end

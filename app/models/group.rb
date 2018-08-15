@@ -15,5 +15,8 @@ class Group < ApplicationRecord
   has_many :users, through: :members
   has_many :tasks, dependent: :destroy
 
+  scope :with_tasks, -> { includes(:tasks) }
+  scope :with_members, -> { includes(:members) }
+
   validates :name, presence: true
 end

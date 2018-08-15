@@ -54,6 +54,10 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  config.include Devise::Test::IntegrationHelpers
+  Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+  config.include ControllerMacros, type: :request
+
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:

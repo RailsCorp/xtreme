@@ -16,7 +16,7 @@ FactoryBot.define do
     name "test"
     role "MyString"
     department "Test"
-    image "MyText"
+    image Rack::Test::UploadedFile.new(File.join(Rails.root, "public/images/img_0813.png"))
     association :user, factory: :user
   end
 end
