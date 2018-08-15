@@ -10,10 +10,8 @@ module Xtreme
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
-    config.autoload_paths += Dir[Rails.root.join("app", "apis", "*")]
     config.time_zone = "Tokyo"
     config.i18n.default_locale = :ja
-    config.logger = ActiveSupport::Logger.new("log/test.log")
 
     config.generators do |g|
       g.assets false
