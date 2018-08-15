@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "groups#show"
   get "home/index" => "home#index"
   resources :users, only: %i[show update destroy]
-  resources :groups, only: %i[create update destroy show] do
+  resources :groups, only: %i[index create update destroy show] do
     resources :tasks, only: %i[index create update destroy show]
     resources :members, only: %i[index create update destroy]
   end
