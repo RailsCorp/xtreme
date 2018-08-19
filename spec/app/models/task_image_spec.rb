@@ -9,6 +9,7 @@ RSpec.describe TaskImage, type: :model do
     context "validation" do
       subject { create(:task_image) }
       it { is_expected.to validate_presence_of(:image) }
+      it { is_expected.to validate_presence_of(:task_id) }
     end
   end
 end

@@ -257,10 +257,10 @@ Member.create(
 )
 Task.create(
   [
-    { title: "a", content: "a", task_type: 0, is_finished: false, on_deadline: "2020-01-01", group_id: 1 },
-    { title: "b", content: "b", task_type: 0, is_finished: false, on_deadline: "2020-01-01", group_id: 1 },
-    { title: "c", content: "c", task_type: 0, is_finished: false, on_deadline: "2020-01-01", group_id: 1 },
-    { title: "d", content: "d", task_type: 0, is_finished: false, on_deadline: "2020-01-01", group_id: 1 },
-    { title: "e", content: "e", task_type: 0, is_finished: false, on_deadline: "2020-01-01", group_id: 1 }
+    { title: "a", content: "a", is_finished: false, on_deadline: "2020-01-01", group_id: 1 },
+    { title: "b", content: "b", is_finished: false, on_deadline: "2020-01-01", group_id: 1 },
+    { title: "c", content: "c", is_finished: false, on_deadline: "2020-01-01", group_id: 1 },
+    { title: "d", content: "d", is_finished: false, on_deadline: "2020-01-01", group_id: 1 },
+    { title: "e", content: "e", is_finished: false, on_deadline: "2020-01-01", group_id: 1 }
   ]
 )

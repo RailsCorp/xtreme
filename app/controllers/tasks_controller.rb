@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_group, only: %i[index create update destroy show]
   before_action :set_task, only: %i[update destroy show]
-  before_action :current_user_valid?
+  before_action :authenticate_user!
   def index
     @tasks = TaskQuery.new(
       @group.id,
@@ -13,9 +13,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    if @task.save
-      @task = TaskDecorattor.decorate(@task)
+    logger.debug "ここ1"
+    logger.debug "create アクション#{params}"
+    result = create_usecase.execute
+    form = result[:form]
+    task = result[:task]
+    if form.errors.empty?
+      @task = TaskDecorator.decorate(task)
       render :show, status: :created
     else
       render :index
@@ -24,7 +28,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      @task = TaskDecorattor.decorate(@task)
+      @task = TaskDecorator.decorate(@task)
       render :show, formats: :json
     else
       render json: @task.errors.full_messages, status: :unprocessable_entity
@@ -42,6 +46,13 @@ class TasksController < ApplicationController
 
   private
 
+  def create_usecase
+    logger.debug "ここやでcreate_usecase"
+    logger.debug "create_usecase アクション#{params}"
+    logger.debug "重要！！！アクション#{task_params}"
+    Tasks::CreateUsecase.new(task_params)
+  end
+
   def set_group
     @group = Group.find(params[:group_id])
   end
@@ -51,22 +62,26 @@ class TasksController < ApplicationController
   end
 
   def task_params
+    logger.debug "ここやでtask_params"
     params.require(:task).permit(
-      :task_type,
       :title,
       :content,
       :on_deadline,
-      :is_finished
+      :is_finished,
+      task_images: [
+        :image
+      ]
     ).merge(
       group_id: @group.id
     )
   end
 
-  def current_user_valid?
-    if @group.member.include?(current_user)
+  def authenticate_user!
+    if @group.members.include?(current_user.id)
       true
     else
-      @group.errors.full_messages # ここは変更
+      return @group.errors.full_messages
     end
+    true
   end
 end

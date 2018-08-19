@@ -219,6 +219,9 @@ Layout/ExtraSpacing:
 Layout/CommentIndentation:
   Enabled: false
 
+Layout/AlignParameters:
+  Enabled: false
+
 ##################### Lint ##################################
 
 #################### Lint ################################
@@ -374,6 +377,7 @@ Lint/UselessAccessModifier:
 Lint/UselessAssignment:
   Description: 'Checks for useless assignment to a local variable.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#underscore-unused-vars'
+  Excluded: app/usecases/**
   Enabled: true
 
 Lint/UselessComparison:
