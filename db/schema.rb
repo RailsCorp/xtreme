@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_16_005920) do
+ActiveRecord::Schema.define(version: 2018_09_02_002815) do
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,10 +37,18 @@ ActiveRecord::Schema.define(version: 2018_08_16_005920) do
     t.index ["chat_id"], name: "index_chat_images_on_chat_id"
   end
 
+  create_table "chat_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "text", null: false
+    t.bigint "chat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_chat_texts_on_chat_id"
+  end
+
   create_table "chats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "group_id", null: false
-    t.text "chat", null: false
+    t.integer "chat_type", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_chats_on_group_id"
@@ -140,6 +148,7 @@ ActiveRecord::Schema.define(version: 2018_08_16_005920) do
   end
 
   add_foreign_key "chat_images", "chats"
+  add_foreign_key "chat_texts", "chats"
   add_foreign_key "chats", "groups"
   add_foreign_key "chats", "users"
   add_foreign_key "comments", "tasks"

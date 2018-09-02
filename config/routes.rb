@@ -2,10 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   root "groups#show"
   get "home/index" => "home#index"
-  resources :users, only: %i[show update destroy]
+  resources :users, only: %i[show update destroy] do
+    resources :chats, only: %i[index create update destroy show]
+  end
   resources :groups, only: %i[index create update destroy show] do
     resources :tasks, only: %i[index create update destroy show]
     resources :members, only: %i[index create update destroy]
+    resources :chats, only: %i[index create update destroy show]
   end
   resources :tasks, only: %i[index create update destroy show] do
     resources :comments, only: %i[index create]
