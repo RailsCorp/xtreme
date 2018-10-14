@@ -70,6 +70,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rack-mini-profiler'
+  gem 'rails-erd'
 end
 
 group :development do
