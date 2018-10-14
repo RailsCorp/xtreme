@@ -12,7 +12,6 @@ gem "bullet", group: :development
 gem "cancancan", "~> 2.0"
 gem "capistrano-rails", group: :development # Use Capistrano for deployment
 gem "carrierwave"
-gem "coffee-rails", "~> 4.2"
 gem "devise"
 gem "dotenv-rails"
 gem "draper"
@@ -25,7 +24,6 @@ gem "i18n_generators"
 gem "jbuilder", "~> 2.5"
 gem "kaminari"
 gem "mysql2", "0.5.2"
-gem "nginx"
 gem "omniauth"
 gem "paper_trail"
 gem "pry-rails"
@@ -35,23 +33,18 @@ gem "rails_admin"
 gem "ransack"
 gem "redis", "~> 4.0"
 gem "rmagick"
-gem "sass-rails", "~> 5.0"
 gem "therubyracer", platforms: :ruby
 gem "trailblazer"
 gem "trailblazer-rails"
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
 gem "unicorn"
-gem "webpacker"
 gem "wicked_pdf"
 gem "wkhtmltopdf-binary"
 
 gem "line-bot-api"
 gem "slack-api"
 gem "slack-notifier"
-
-gem "html2slim"
-gem "slim-rails"
 
 group :development, :staging do
   gem "rubocop", "~> 0.55.0", require: false
