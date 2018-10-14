@@ -1,20 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'home/index' => 'home#index'
-  resources :tasks, only: :index
-  resources :users do
+  root "groups#show"
+  get "home/index" => "home#index"
+  resources :users, only: %i[show update destroy]
+  resources :groups, only: %i[index create update destroy show] do
+    resources :tasks, only: %i[index create update destroy show]
+    resources :members, only: %i[index create update destroy]
   end
-
-  namespace :api do
-    resources :users do
-      resources :groups
-      resources :coporations
-    end
-
-    resources :tasks, only: [:create, :update, :destroy] do
-      resources :comments, only: [:create, :destory]
-      resources :memos, only: [:create, :destory]
-    end
+  resources :tasks, only: %i[index create update destroy show] do
+    resources :comments, only: %i[index create]
+    resources :memos, only: %i[index create]
   end
-  # mount API::Root => '/api'
+  # 管理画面用
+  namespace :admin do
+    devise_for :admin_users
+    resources :admin_users, only: %i[show update destroy]
+  end
 end

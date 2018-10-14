@@ -13,7 +13,10 @@
 
 FactoryBot.define do
   factory :user_infomation do
+    name "test"
     role "MyString"
-    image "MyText"
+    department "Test"
+    image Rack::Test::UploadedFile.new(File.join(Rails.root, "public/images/img_0813.png"))
+    association :user, factory: :user
   end
 end

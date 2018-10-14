@@ -1,9 +1,8 @@
 namespace :unicorn do
-
   # Tasks
   desc "Start unicorn"
   task(:start) {
-    config = Rails.root.join('config', 'unicorn.rb')
+    config = Rails.root.join("config", "unicorn.rb")
     sh "unicorn -c #{config} -E development -D"
   }
 
@@ -33,16 +32,13 @@ namespace :unicorn do
   end
 
   # Helpers
-  def unicorn_signal signal
+  def unicorn_signal(signal)
     Process.kill signal, unicorn_pid
   end
 
   def unicorn_pid
-    begin
-      File.read("/vagrant/xtreme/tmp/pids/unicorn.pid").to_i
-    rescue Errno::ENOENT
-      raise "Unicorn does not seem to be running"
-    end
+    File.read("/vagrant/xtreme/tmp/pids/unicorn.pid").to_i
+  rescue Errno::ENOENT
+    raise "Unicorn does not seem to be running"
   end
-
 end

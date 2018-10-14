@@ -64,7 +64,7 @@ Style/AsciiComments:
 # auto-correct せず、自分で修正する
 # spec 内は見た目が綺麗になるので許可
 Style/BlockDelimiters:
-  AutoCorrect: false
+  Enabled: false
   Exclude:
     - "spec/**/*"
 
@@ -153,7 +153,10 @@ Style/NumericLiterals:
 # 正規表現にマッチさせた時の特殊変数の置き換えは Regex.last_match ではなく
 # 名前付きキャプチャを使って参照したいので auto-correct しない
 Style/PerlBackrefs:
-  AutoCorrect: false
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
 
 # has_ から始まるメソッドは許可する
 Style/PredicateName:
@@ -394,6 +397,9 @@ Lint/Void:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'config/**/**'
+    - 'bin/**/**'
+    - 'lib/**/**'
 
 # 30 まではギリギリ許せる範囲だった
 Metrics/AbcSize:
@@ -407,7 +413,7 @@ Metrics/CyclomaticComplexity:
 # * 禁止 160文字
 # のイメージ
 Metrics/LineLength:
-  Max: 160
+  Max: 190
   Exclude:
     - "db/migrate/*.rb"
 
@@ -419,4 +425,4 @@ Metrics/MethodLength:
 
 # 分岐の数。ガード句を多用しているとデフォルト 7 だと厳しい
 Metrics/PerceivedComplexity:
-  Max: 8
+  Max: 10

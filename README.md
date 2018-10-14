@@ -6,14 +6,24 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux]
+
+Rails ver 5.2.0
+
+ruby 2.5.1p57 (2018-03-29 revision 63029)
 
 * System dependencies
 
 * Configuration
 
+  fatモデル、fatコントローラにならないことを気をつける
+
+  基本的にControllerでの処理がfatになりやすいから、QueryやUsecaseを使う
+
 * Database creation
-MySQL -> config/environment/development.log (位置を見直す)
+
+MySQL -> config/environment/development.log
+
+socketの位置で環境変数を使う
 
 * Database initialization
 
@@ -41,35 +51,68 @@ https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
 
 3. `mkdir vagrant`でvagrantディレクトリを作成。
 
+
 4. `cd vagrant`でvagrantディレクトリ内に入り、`vagrant init centos/7`を実行(macOS上)。
+
 
 5. 4.が終了したらvagrantディレクトリ内に`ls`で、Vagrantfileができているか確認。
 
-6. `vagrant up`を実行。終了したら、`vagrant ssh`を実行し、vagrant内に入る。
-   このとき、`[vagrant@localhost@ ~]`になっていればOK
+
+6.
+  ``
+    vagrant up
+  ``
+
+
+  を実行。終了したら、
+
+  ``
+    vagrant ssh
+  ``
+
+
+  を実行し、vagrant内に入る。
+
+  このとき、
+
+  ``
+    [vagrant@localhost@ ~]
+  ``
+
+  になっていればOK
 
 7. `cd /vagrant`を実行し、`pwd`コマンドでちゃんと`/vagrant`になっていることを確認。
+
 注) 必ず、異動先のコマンドで必ず`/vagrant`にしてください！
 
 8. Vagrantfileが存在するホストディレクトリ上(macOS側)と
+
    ゲストディレクトリ上(centOS側)の`/vagrant`が共有してます。
 
    確認) 確認として、ターミナルを二つ開き、vagrantとmacとで分けてmacOS側で`touch test`でtestファイルを作ってみる。
+
       vagrant上で`ls`で`test`ファイルが存在すればOK
+
       できてなかったら、ゴウキにSlack投げて！
 
 ここからは全てvagrantに入ってからの話。
+
 9. Gitインストール
 
   ``
   yum -y install git
   ``
+
   でGitをインストール
+
    確認として
+
    ``
    git --version
    ``
-   を実行！　
+
+   を実行！
+
    もし入らなかったら、ググって解決してください！
 
 10. rbenvの導入
@@ -81,11 +124,13 @@ https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
   ``
   echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
   ``
+
   ``
   echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
   ``
 
   を順に実行。
+
   ``
   rbenv --version
   ``
@@ -108,14 +153,20 @@ https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
 
   ``
   rbenv install 2.5.0
-  ``を実行し、
+  ``
+
+  を実行し、
+
   ``
   rbenv global 2.5.0
   ``
+
   でglobalに設定。
+
   ``
   ruby -v
   ``
+
   でver2.5.0が入っているかを確認。
 
 13. railsの導入
@@ -151,6 +202,7 @@ bundle install
 ``
 bundle exec rails db:migrate
 ``
+
 ※ 必要に応じては、
 
 ``

@@ -8,7 +8,7 @@
 #  task_type  :integer          default(0), not null
 #
 
-require 'test_helper'
+require "test_helper"
 
 class TaskTest < ActiveSupport::TestCase
   # test "the truth" do

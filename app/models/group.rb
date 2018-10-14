@@ -13,8 +13,10 @@
 class Group < ApplicationRecord
   has_many :members, dependent: :destroy
   has_many :users, through: :members
-  has_many :group_tasks, dependent: :destroy
-  has_many :tasks, through: :group_tasks
+  has_many :tasks, dependent: :destroy
+
+  scope :with_tasks, -> { includes(:tasks) }
+  scope :with_members, -> { includes(:members) }
 
   validates :name, presence: true
 end
