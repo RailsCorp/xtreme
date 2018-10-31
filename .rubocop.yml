@@ -423,7 +423,7 @@ Metrics/LineLength:
 
 # 20 行超えるのは migration ファイル以外滅多に無い
 Metrics/MethodLength:
-  Max: 20
+  Max: 40
   Exclude:
     - "db/migrate/*.rb"
 
