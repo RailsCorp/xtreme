@@ -7,7 +7,7 @@ AllCops:
   Exclude:
     - "vendor/**/*" # rubocop config/default.yml
     - "db/schema.rb"
-    - "node_modules/*"
+    - "node_modules/**/*"
   DisplayCopNames: true
 
 Rails/ActionFilter:
