@@ -8,14 +8,9 @@ jobs:
             DB_HOST: 127.0.0.1
             MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
             MYSQL_USERNAME: root
-            MYSQL_PASSWORD:
+            MYSQL_ROOT_HOST=%
       - image: circleci/mysql:5.7
-        environment:
-            RAILS_ENV: test
-            DB_HOST: 127.0.0.1
-            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-            MYSQL_USERNAME: root
-            MYSQL_PASSWORD:
+      - image: redis:4.0.6
     working_directory: ~/myapp
 
     steps:
