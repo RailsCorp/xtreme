@@ -1,4 +1,3 @@
-
 # target_version:
 #   rubocop v0.34.2
 
@@ -8,6 +7,7 @@ AllCops:
   Exclude:
     - "vendor/**/*" # rubocop config/default.yml
     - "db/schema.rb"
+    - "node_modules/*"
   DisplayCopNames: true
 
 Rails/ActionFilter:
