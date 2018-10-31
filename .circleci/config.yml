@@ -6,6 +6,8 @@ jobs:
         environment:
             RAILS_ENV: test
             DB_HOST: 127.0.0.1
+            MYSQL_USERNAME: root
+            MYSQL_PASSWORD:
       - image: circleci/mysql:5.7
     working_directory: ~/myapp
 
